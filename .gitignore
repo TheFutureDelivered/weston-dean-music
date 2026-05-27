@@ -1,0 +1,34 @@
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Local env (never commit secrets)
+.env
+.env.local
+.env.production
+.env.*.local
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Raw assets (local-only originals, large files)
+raw/
+
+# Astro types
+.astro/
+
+# Cloudflare/Wrangler local state
+.wrangler/

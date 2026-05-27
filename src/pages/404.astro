@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stageFinderProfile = 'https://thestagefinder.com/performer/60bd4dd1-f7fa-47a4-a7a3-48328b9de432';
+---
+
+<Layout title="Off the setlist · 404 · Weston Dean Music" description="That page doesn't exist on westondeanmusic.com.">
+  <main class="min-h-screen bg-sand flex flex-col">
+    <!-- Top stripe -->
+    <div class="grid grid-cols-6 h-2 shrink-0">
+      <div class="bg-sunset-yellow"></div>
+      <div class="bg-sunset-orange"></div>
+      <div class="bg-sunset-coral"></div>
+      <div class="bg-sunset-red"></div>
+      <div class="bg-sunset-burgundy"></div>
+      <div class="bg-sunset-purple"></div>
+    </div>
+
+    <div class="flex-1 flex items-center justify-center px-6 py-16">
+      <div class="max-w-2xl text-center">
+        <a href="/" class="inline-block mb-12">
+          <img
+            src="/logo.png"
+            alt="Weston Dean Music"
+            width="1295"
+            height="752"
+            class="h-20 sm:h-24 w-auto mx-auto"
+          />
+        </a>
+
+        <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red mb-4">404 · off the setlist</p>
+        <h1 class="font-display text-6xl sm:text-8xl text-ink leading-[0.95] mb-6">
+          That song's not<br />
+          <span class="italic text-sunset-orange">in the book.</span>
+        </h1>
+        <p class="text-lg text-inkSoft mb-10 max-w-md mx-auto">
+          The page you were looking for doesn't live here. Take a request from the menu below.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <a
+            href="/"
+            class="font-semibold bg-ink text-sand px-6 py-3 rounded-sm hover:bg-sunset-orange transition-colors"
+          >
+            Back to home
+          </a>
+          <a
+            href="/#shows"
+            class="font-semibold text-ink border-2 border-ink px-6 py-3 rounded-sm hover:bg-ink hover:text-sand transition-colors"
+          >
+            Past shows
+          </a>
+          <a
+            href={stageFinderProfile}
+            target="_blank"
+            rel="noopener"
+            class="font-semibold text-ink border-2 border-ink px-6 py-3 rounded-sm hover:bg-ink hover:text-sand transition-colors"
+          >
+            Book a date
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom stripe -->
+    <div class="grid grid-cols-6 h-2 shrink-0">
+      <div class="bg-sunset-purple"></div>
+      <div class="bg-sunset-burgundy"></div>
+      <div class="bg-sunset-red"></div>
+      <div class="bg-sunset-coral"></div>
+      <div class="bg-sunset-orange"></div>
+      <div class="bg-sunset-yellow"></div>
+    </div>
+  </main>
+</Layout>

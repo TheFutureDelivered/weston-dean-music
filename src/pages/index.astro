@@ -1,0 +1,510 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stageFinderProfile = 'https://thestagefinder.com/performer/60bd4dd1-f7fa-47a4-a7a3-48328b9de432';
+const bookingUrl = 'https://thestagefinder.com/book/weston-dean';
+const bookingEmail = 'booking@westondeanmusic.com';
+const phone = '973.570.3211';
+const phoneHref = 'tel:+19735703211';
+const instagram = 'https://www.instagram.com/westondeanmusic';
+const tiktok = 'https://www.tiktok.com/@westondeanmusic';
+
+const genres = ['Rock', 'Blues', 'Country', 'R&B', 'Pop', 'Folk', 'Acoustic'];
+
+type Show = {
+  monthShort: string;
+  year: string;
+  venue: string;
+  city: string;
+  note?: string;
+  tilt: number;
+  // Asset shown at the top of the card.
+  // logo: clean logo on cream bg (object-contain with padding)
+  // photo: venue photo (object-cover, edge to edge)
+  // svg: custom illustrated icon (object-contain with padding)
+  asset?: { src: string; alt: string; kind: 'logo' | 'photo' | 'svg' };
+};
+
+// Newest first.
+const pastShows: Show[] = [
+  { monthShort: 'Apr', year: '2026', venue: 'VFW Halls Mill Rd', city: 'Mobile, AL', tilt: -2,
+    asset: { src: '/venues/vfw.png', alt: 'VFW', kind: 'logo' } },
+  { monthShort: 'Jan', year: '2026', venue: 'The Battle House Hotel', city: 'Mobile, AL', tilt: 1,
+    asset: { src: '/venues/battle-house.jpg', alt: 'Renaissance The Battle House Hotel & Spa', kind: 'logo' } },
+  { monthShort: 'Dec', year: '2025', venue: 'VFW Fowl River', city: 'Theodore, AL', tilt: -1,
+    asset: { src: '/venues/vfw.png', alt: 'VFW', kind: 'logo' } },
+  { monthShort: 'Nov', year: '2025', venue: 'The River Shack', city: 'Mobile, AL', tilt: 2,
+    asset: { src: '/venues/river-shack.jpg', alt: 'The River Shack at night', kind: 'photo' } },
+  { monthShort: 'Oct', year: '2025', venue: 'VFW Fowl River', city: 'Theodore, AL', tilt: -2,
+    asset: { src: '/venues/vfw.png', alt: 'VFW', kind: 'logo' } },
+  { monthShort: 'Sep', year: '2025', venue: 'The Carriage House', city: 'Dauphin Island, AL', tilt: 1,
+    asset: { src: '/venues/carriage-house.png', alt: 'The Carriage Wine & Market', kind: 'photo' } },
+  { monthShort: 'Aug', year: '2025', venue: 'The Pelican Reef', city: 'Fowl River, AL', tilt: -1,
+    asset: { src: '/venues/pelican-reef.jpg', alt: 'The Pelican Reef neon sign at night', kind: 'photo' } },
+  { monthShort: 'Jul', year: '2025', venue: 'Mirror Lake Racquet Club', city: 'Mobile, AL', tilt: 2,
+    asset: { src: '/venues/mirror-lake.svg', alt: 'Crossed tennis racquets', kind: 'svg' } },
+];
+
+const upcomingShows: Show[] = [];
+
+const sampleSetlist: { title: string; artist: string }[] = [
+  { title: 'Slow Dancing In A Burning Room', artist: 'John Mayer' },
+  { title: 'Wicked Game', artist: 'Chris Isaak' },
+  { title: 'Take Me Home, Country Roads', artist: 'John Denver' },
+  { title: 'Something In The Orange', artist: 'Zach Bryan' },
+  { title: 'Go Your Own Way', artist: 'Fleetwood Mac' },
+  { title: 'Santeria', artist: 'Sublime' },
+  { title: 'Hey There Delilah', artist: "Plain White T's" },
+  { title: 'Closing Time', artist: 'Semisonic' },
+  { title: 'Tennessee Orange', artist: 'Megan Moroney' },
+  { title: 'Heartless', artist: 'Morgan Wallen' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<Layout>
+  <!-- Header -->
+  <header class="relative z-30 bg-sand">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 py-5 flex items-center justify-between gap-6">
+      <a href="#top" class="flex items-center gap-3 group shrink-0">
+        <img
+          src="/logo.png"
+          alt="Weston Dean Music"
+          width="1295"
+          height="752"
+          class="h-16 sm:h-20 w-auto"
+        />
+        <span class="sr-only">Weston Dean Music</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-8 text-sm font-medium text-ink/70">
+        <a href="#about" class="hover:text-sunset-orange transition-colors">About</a>
+        <a href="#shows" class="hover:text-sunset-orange transition-colors">Shows</a>
+        <a href="#setlist" class="hover:text-sunset-orange transition-colors">Setlist</a>
+        <a href="#booking" class="hover:text-sunset-orange transition-colors">Booking</a>
+      </nav>
+      <a
+        href={bookingUrl}
+        target="_blank"
+        rel="noopener"
+        class="text-sm font-semibold bg-sunset-orange text-sand px-4 py-2 rounded-sm hover:bg-ink transition-colors"
+      >
+        Book a date
+      </a>
+    </div>
+    <!-- sunset stripe bar -->
+    <div class="grid grid-cols-6 h-1.5">
+      <div class="bg-sunset-yellow"></div>
+      <div class="bg-sunset-orange"></div>
+      <div class="bg-sunset-coral"></div>
+      <div class="bg-sunset-red"></div>
+      <div class="bg-sunset-burgundy"></div>
+      <div class="bg-sunset-purple"></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="relative bg-sand overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 lg:py-32 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <!-- Headline column -->
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red mb-5">
+          Mobile, Alabama · Gulf Coast
+        </p>
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-ink">
+          Acoustic guitar.
+          <span class="block text-sunset-orange italic">Your setlist.</span>
+        </h1>
+        <p class="mt-8 max-w-xl text-lg sm:text-xl text-inkSoft leading-relaxed">
+          Solo acoustic guitar and vocals with a crowd-driving setlist that takes live requests. Two decades of playing, every audience welcome.
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener"
+            class="font-semibold bg-ink text-sand px-6 py-3 rounded-sm hover:bg-sunset-orange transition-colors"
+          >
+            Book on The Stage Finder
+          </a>
+          <a
+            href="#setlist"
+            class="font-semibold text-ink border-2 border-ink px-6 py-3 rounded-sm hover:bg-ink hover:text-sand transition-colors"
+          >
+            Hear the vibe
+          </a>
+        </div>
+      </div>
+
+      <!-- Photo column -->
+      <div class="lg:col-span-5 order-1 lg:order-2">
+        <div class="relative">
+          <!-- offset stripe accent behind photo -->
+          <div class="hidden sm:block absolute -bottom-4 -right-4 w-full h-full bg-sunset-orange rounded-sm"></div>
+          <div class="relative overflow-hidden rounded-sm border-2 border-ink bg-sandDark">
+            <picture>
+              <source srcset="/photos/IMG_3465.webp" type="image/webp" />
+              <img
+                src="/photos/IMG_3465.jpg"
+                alt="Weston Dean performing on acoustic guitar against a painted brick wall"
+                width="627"
+                height="836"
+                class="w-full h-auto object-cover"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="relative bg-sandLight border-t-2 border-ink py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-5">
+        <div class="relative">
+          <div class="hidden sm:block absolute -top-4 -left-4 w-full h-full bg-sunset-burgundy rounded-sm"></div>
+          <div class="relative overflow-hidden rounded-sm border-2 border-ink">
+            <picture>
+              <source srcset="/photos/IMG_3496.webp" type="image/webp" />
+              <img
+                src="/photos/IMG_3496.jpg"
+                alt="Weston Dean playing an Ibanez archtop guitar, black and white portrait"
+                width="717"
+                height="956"
+                class="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-7 space-y-6 text-lg text-inkSoft leading-relaxed">
+        <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red">
+          About
+        </p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-[0.95] text-ink">
+          One guitar, every audience.
+        </h2>
+        <p>
+          I bring a diverse setlist that can cover whatever the audience enjoys and wants to hear. I love filling real-time requests and surprising rooms with unexpected song choices, while driving up the energy and making sure everyone has a great time.
+        </p>
+        <p>
+          Primarily acoustic guitar and vocals. A harmonica makes the set sometimes too. Two decades of playing. Available across the Gulf Coast.
+        </p>
+        <dl class="pt-6 grid grid-cols-2 gap-x-6 gap-y-6 text-sm">
+          <div class="border-l-4 border-sunset-yellow pl-4">
+            <dt class="text-sunset-red uppercase tracking-widest text-xs mb-1 font-semibold">Based</dt>
+            <dd class="text-ink font-display text-lg">Mobile, Alabama</dd>
+          </div>
+          <div class="border-l-4 border-sunset-orange pl-4">
+            <dt class="text-sunset-red uppercase tracking-widest text-xs mb-1 font-semibold">Format</dt>
+            <dd class="text-ink font-display text-lg">Solo, guitar + vocals</dd>
+          </div>
+          <div class="border-l-4 border-sunset-coral pl-4">
+            <dt class="text-sunset-red uppercase tracking-widest text-xs mb-1 font-semibold">Catalog</dt>
+            <dd class="text-ink font-display text-lg">49 songs and growing</dd>
+          </div>
+          <div class="border-l-4 border-sunset-red pl-4">
+            <dt class="text-sunset-red uppercase tracking-widest text-xs mb-1 font-semibold">Requests</dt>
+            <dd class="text-ink font-display text-lg">Yes, please</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shows -->
+  <section id="shows" class="relative bg-sand border-t-2 border-ink py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10">
+      <div class="text-center mb-16">
+        <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red mb-4">Shows</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-[0.95] text-ink mb-4">Where the guitar's been.</h2>
+        <p class="text-lg text-inkSoft max-w-2xl mx-auto">Past gigs across the Gulf Coast. Next dates open on{' '}
+          <a href={stageFinderProfile} target="_blank" rel="noopener" class="text-sunset-orange hover:text-ink underline underline-offset-4 font-semibold">The Stage Finder</a>.
+        </p>
+      </div>
+
+      <!-- Upcoming -->
+      <div class="mb-20">
+        <div class="flex items-center justify-center gap-4 mb-10">
+          <div class="h-px flex-1 max-w-32 bg-ink/20"></div>
+          <h3 class="font-display text-2xl sm:text-3xl text-ink uppercase tracking-wider">Upcoming</h3>
+          <div class="h-px flex-1 max-w-32 bg-ink/20"></div>
+        </div>
+        {upcomingShows.length === 0 ? (
+          <div class="flex justify-center">
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener"
+              class="relative group block w-72 md:w-80 aspect-[2/3] bg-sand border-2 border-ink rounded-sm overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <!-- sunset stripe band -->
+              <div class="grid grid-cols-6 h-2">
+                <div class="bg-sunset-yellow"></div>
+                <div class="bg-sunset-orange"></div>
+                <div class="bg-sunset-coral"></div>
+                <div class="bg-sunset-red"></div>
+                <div class="bg-sunset-burgundy"></div>
+                <div class="bg-sunset-purple"></div>
+              </div>
+              <div class="flex flex-col items-center justify-center text-center px-8 h-full">
+                <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red mb-4">Next date</p>
+                <p class="font-display text-3xl sm:text-4xl text-ink leading-[1.05] mb-4">Your venue?</p>
+                <p class="text-inkSoft mb-8">
+                  Live availability is on The Stage Finder. Pick a date, send a note, and we'll talk details.
+                </p>
+                <span class="font-semibold bg-ink text-sand px-5 py-2.5 rounded-sm group-hover:bg-sunset-orange transition-colors">
+                  Book a date
+                </span>
+              </div>
+              <div class="grid grid-cols-6 h-2 absolute bottom-0 inset-x-0">
+                <div class="bg-sunset-purple"></div>
+                <div class="bg-sunset-burgundy"></div>
+                <div class="bg-sunset-red"></div>
+                <div class="bg-sunset-coral"></div>
+                <div class="bg-sunset-orange"></div>
+                <div class="bg-sunset-yellow"></div>
+              </div>
+            </a>
+          </div>
+        ) : (
+          <div class="flex flex-wrap items-start justify-center gap-10 md:gap-12">
+            {upcomingShows.map((s) => (
+              <div class="relative" style={`transform: rotate(${s.tilt}deg);`}>
+                <div class="w-64 md:w-72 aspect-[2/3] bg-sand border-2 border-ink rounded-sm overflow-hidden shadow-lg shadow-ink/10 transition-transform duration-300 hover:rotate-0 hover:scale-105">
+                  <div class="grid grid-cols-6 h-2">
+                    <div class="bg-sunset-yellow"></div>
+                    <div class="bg-sunset-orange"></div>
+                    <div class="bg-sunset-coral"></div>
+                    <div class="bg-sunset-red"></div>
+                    <div class="bg-sunset-burgundy"></div>
+                    <div class="bg-sunset-purple"></div>
+                  </div>
+                  <div class="flex flex-col items-center justify-between text-center px-6 py-8 h-[calc(100%-1rem)]">
+                    <div>
+                      <p class="font-display text-5xl md:text-6xl text-ink leading-none">{s.year.slice(-2)}</p>
+                      <p class="font-display text-xl md:text-2xl text-sunset-red uppercase tracking-widest mt-1">{s.monthShort}</p>
+                    </div>
+                    <div>
+                      <p class="font-display text-xl md:text-2xl text-ink leading-tight">{s.venue}</p>
+                      <p class="text-sm text-inkSoft mt-1">{s.city}</p>
+                      {s.note && <p class="text-xs uppercase tracking-widest text-sunset-orange mt-3 font-semibold">{s.note}</p>}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Past Shows -->
+      <div>
+        <div class="flex items-center justify-center gap-4 mb-10">
+          <div class="h-px flex-1 max-w-32 bg-ink/20"></div>
+          <h3 class="font-display text-2xl sm:text-3xl text-ink uppercase tracking-wider">Where I've Played</h3>
+          <div class="h-px flex-1 max-w-32 bg-ink/20"></div>
+        </div>
+        <div class="flex flex-wrap items-start justify-center gap-8 md:gap-10">
+          {pastShows.map((s) => (
+            <div class="relative" style={`transform: rotate(${s.tilt}deg);`}>
+              <div class="w-60 md:w-64 aspect-[2/3] bg-sand border-2 border-ink rounded-sm overflow-hidden shadow-lg shadow-ink/10 transition-transform duration-300 hover:rotate-0 hover:scale-105 flex flex-col">
+                <!-- top stripe -->
+                <div class="grid grid-cols-6 h-1.5 shrink-0">
+                  <div class="bg-sunset-yellow"></div>
+                  <div class="bg-sunset-orange"></div>
+                  <div class="bg-sunset-coral"></div>
+                  <div class="bg-sunset-red"></div>
+                  <div class="bg-sunset-burgundy"></div>
+                  <div class="bg-sunset-purple"></div>
+                </div>
+                <!-- venue asset area, ~38% of card height -->
+                {s.asset && (
+                  <div class={`relative shrink-0 border-b-2 border-ink ${s.asset.kind === 'photo' ? 'bg-ink' : 'bg-sandLight'}`} style="height: 38%;">
+                    <img
+                      src={s.asset.src}
+                      alt={s.asset.alt}
+                      class={s.asset.kind === 'photo' ? 'w-full h-full object-cover' : 'w-full h-full object-contain p-4'}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <!-- date + venue text -->
+                <div class="flex-1 flex flex-col items-center justify-between text-center px-4 py-4">
+                  <div>
+                    <p class="font-display text-4xl md:text-5xl text-ink leading-none">{s.year.slice(-2)}</p>
+                    <p class="font-display text-base md:text-lg text-sunset-red uppercase tracking-widest mt-1">{s.monthShort}</p>
+                  </div>
+                  <div class="mt-2">
+                    <p class="font-display text-base md:text-lg text-ink leading-tight">{s.venue}</p>
+                    <p class="text-xs text-inkSoft mt-1">{s.city}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="text-center mt-14 text-sm text-inkSoft">
+          Full booking history on{' '}
+          <a href={stageFinderProfile} target="_blank" rel="noopener" class="text-sunset-orange hover:text-ink underline underline-offset-4 font-semibold">The Stage Finder</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Setlist + Genres : darker accent band (purple/burgundy) -->
+  <section id="setlist" class="relative bg-sunset-purple text-sand border-t-2 border-ink py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10">
+      <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-yellow mb-4">
+        What I play
+      </p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[0.95] text-sand mb-10">
+        A little of everything.
+      </h2>
+
+      <div class="flex flex-wrap gap-2 mb-16">
+        {genres.map((g) => (
+          <span class="px-4 py-1.5 rounded-full border-2 border-sand/30 text-sm text-sand bg-sand/5 font-medium">
+            {g}
+          </span>
+        ))}
+      </div>
+
+      <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-yellow mb-6">
+        A taste of the catalog
+      </p>
+      <ul class="grid sm:grid-cols-2 gap-x-12 gap-y-3 mb-12">
+        {sampleSetlist.map((song) => (
+          <li class="flex items-baseline justify-between border-b border-sand/15 pb-3 gap-4">
+            <span class="font-display text-lg text-sand">{song.title}</span>
+            <span class="text-sm text-sand/60 whitespace-nowrap">{song.artist}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p class="text-base text-sand/70">
+        Full 49 song catalog and full press kit on{' '}
+        <a href={stageFinderProfile} target="_blank" rel="noopener" class="text-sunset-yellow hover:text-sand underline underline-offset-4 transition-colors font-semibold">
+          The Stage Finder
+        </a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking" class="relative bg-sand border-t-2 border-ink py-20 sm:py-28">
+    <div class="max-w-4xl mx-auto px-6 sm:px-10 text-center">
+      <div class="mb-10 flex justify-center">
+        <div class="relative">
+          <div class="absolute -bottom-3 -right-3 w-full h-full bg-sunset-orange rounded-full"></div>
+          <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-2 border-ink">
+            <picture>
+              <source srcset="/photos/IMG_3542.webp" type="image/webp" />
+              <img
+                src="/photos/IMG_3542.jpg"
+                alt="Weston Dean, smiling portrait against a painted brick wall"
+                width="627"
+                height="836"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+      <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red mb-4">
+        Booking
+      </p>
+      <h2 class="font-display text-4xl sm:text-6xl leading-[0.95] text-ink mb-6">
+        Let's get a date on the books.
+      </h2>
+      <p class="text-lg text-inkSoft max-w-2xl mx-auto mb-10">
+        Live availability is on The Stage Finder. Pick a date, send a note, and we'll talk details. Prefer to skip the platform? Direct lines are below.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <a
+          href={bookingUrl}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold bg-ink text-sand px-6 py-3 rounded-sm hover:bg-sunset-orange transition-colors"
+        >
+          See available dates
+        </a>
+        <a
+          href={stageFinderProfile}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold text-ink border-2 border-ink px-6 py-3 rounded-sm hover:bg-ink hover:text-sand transition-colors"
+        >
+          Full press kit
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
+        <a
+          href={`mailto:${bookingEmail}`}
+          class="block p-6 bg-sandLight border-2 border-ink rounded-sm hover:bg-sunset-yellow transition-colors group"
+        >
+          <p class="text-xs tracking-widest uppercase text-sunset-red mb-2 font-semibold">Email</p>
+          <p class="font-display text-xl text-ink break-all">
+            {bookingEmail}
+          </p>
+        </a>
+        <a
+          href={phoneHref}
+          class="block p-6 bg-sandLight border-2 border-ink rounded-sm hover:bg-sunset-yellow transition-colors group"
+        >
+          <p class="text-xs tracking-widest uppercase text-sunset-red mb-2 font-semibold">Phone</p>
+          <p class="font-display text-xl text-ink">
+            {phone}
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-sand border-t-2 border-ink">
+    <!-- sunset stripe band at top of footer -->
+    <div class="grid grid-cols-6 h-1.5">
+      <div class="bg-sunset-yellow"></div>
+      <div class="bg-sunset-orange"></div>
+      <div class="bg-sunset-coral"></div>
+      <div class="bg-sunset-red"></div>
+      <div class="bg-sunset-burgundy"></div>
+      <div class="bg-sunset-purple"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 py-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+      <div>
+        <p class="font-display text-2xl text-sand mb-1">Weston Dean Music</p>
+        <p class="text-sm text-sand/60">Mobile, AL · Gulf Coast</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+        <a href={instagram} target="_blank" rel="noopener" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">
+          Instagram
+        </a>
+        <a href={tiktok} target="_blank" rel="noopener" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">
+          TikTok
+        </a>
+        <a href={stageFinderProfile} target="_blank" rel="noopener" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">
+          The Stage Finder
+        </a>
+        <a href="/privacy" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">
+          Privacy
+        </a>
+        <a href="/terms" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">
+          Terms
+        </a>
+      </div>
+
+      <p class="text-xs text-sand/50">
+        © {year} Weston Dean Music
+      </p>
+    </div>
+  </footer>
+</Layout>

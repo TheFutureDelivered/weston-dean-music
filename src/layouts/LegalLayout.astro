@@ -1,0 +1,112 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  heading: string;
+  lastUpdated: string;
+}
+
+const { title, heading, lastUpdated } = Astro.props;
+---
+
+<Layout title={`${title} · Weston Dean Music`} description={`${title} for westondeanmusic.com.`}>
+  <!-- Header -->
+  <header class="relative z-30 bg-sand">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 py-5 flex items-center justify-between gap-6">
+      <a href="/" class="flex items-center gap-3 group shrink-0">
+        <img
+          src="/logo.png"
+          alt="Weston Dean Music"
+          width="1295"
+          height="752"
+          class="h-16 sm:h-20 w-auto"
+        />
+        <span class="sr-only">Weston Dean Music home</span>
+      </a>
+      <a
+        href="/"
+        class="text-sm font-semibold text-ink border-2 border-ink px-4 py-2 rounded-sm hover:bg-ink hover:text-sand transition-colors"
+      >
+        Back home
+      </a>
+    </div>
+    <div class="grid grid-cols-6 h-1.5">
+      <div class="bg-sunset-yellow"></div>
+      <div class="bg-sunset-orange"></div>
+      <div class="bg-sunset-coral"></div>
+      <div class="bg-sunset-red"></div>
+      <div class="bg-sunset-burgundy"></div>
+      <div class="bg-sunset-purple"></div>
+    </div>
+  </header>
+
+  <main class="bg-sand min-h-[60vh] py-16 sm:py-24">
+    <article class="max-w-3xl mx-auto px-6 sm:px-10">
+      <p class="font-sans text-xs tracking-[0.3em] uppercase text-sunset-red mb-4">{title}</p>
+      <h1 class="font-display text-4xl sm:text-5xl leading-[0.95] text-ink mb-4">{heading}</h1>
+      <p class="text-sm text-inkSoft mb-12">Last updated {lastUpdated}</p>
+
+      <div class="prose-content text-inkSoft text-base sm:text-lg leading-relaxed space-y-6">
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <footer class="bg-ink text-sand">
+    <div class="grid grid-cols-6 h-1.5">
+      <div class="bg-sunset-yellow"></div>
+      <div class="bg-sunset-orange"></div>
+      <div class="bg-sunset-coral"></div>
+      <div class="bg-sunset-red"></div>
+      <div class="bg-sunset-burgundy"></div>
+      <div class="bg-sunset-purple"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <p class="font-display text-xl text-sand">Weston Dean Music</p>
+      <div class="flex flex-wrap items-center gap-6 text-sm">
+        <a href="/privacy" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">Privacy</a>
+        <a href="/terms" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">Terms</a>
+        <a href="/" class="text-sand/70 hover:text-sunset-yellow transition-colors font-medium">Home</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style is:global>
+  .prose-content h2 {
+    font-family: 'Caprasimo', 'Cooper Black', Georgia, serif;
+    font-size: 1.875rem;
+    color: #1c1a17;
+    line-height: 1.05;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-content h3 {
+    font-family: 'Caprasimo', 'Cooper Black', Georgia, serif;
+    font-size: 1.25rem;
+    color: #1c1a17;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-content a {
+    color: #e07d2f;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 600;
+  }
+  .prose-content a:hover {
+    color: #1c1a17;
+  }
+  .prose-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+  .prose-content ul li {
+    margin-bottom: 0.5rem;
+  }
+  .prose-content strong {
+    color: #1c1a17;
+    font-weight: 600;
+  }
+</style>

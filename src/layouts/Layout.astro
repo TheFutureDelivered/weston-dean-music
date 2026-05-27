@@ -1,0 +1,83 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Weston Dean · Acoustic Guitarist · Mobile, AL',
+  description = 'Solo acoustic guitar and vocals with a crowd-driving setlist that takes live requests. Booking events on the Gulf Coast from Mobile, Alabama.',
+  ogImage = '/og.jpg',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="theme-color" content="#ece4d0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:site_name" content="Weston Dean Music" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'MusicGroup',
+      name: 'Weston Dean',
+      genre: ['Acoustic', 'Rock', 'Blues', 'Country', 'R&B', 'Pop', 'Folk'],
+      foundingLocation: {
+        '@type': 'Place',
+        name: 'Mobile, Alabama',
+      },
+      url: 'https://westondeanmusic.com',
+      sameAs: [
+        'https://thestagefinder.com/performer/60bd4dd1-f7fa-47a4-a7a3-48328b9de432',
+        'https://www.instagram.com/westondeanmusic',
+        'https://www.tiktok.com/@westondeanmusic',
+      ],
+      email: 'booking@westondeanmusic.com',
+      telephone: '+1-973-570-3211',
+    })} />
+  </head>
+  <body class="bg-sand text-ink font-sans antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    background-color: #ece4d0;
+  }
+  ::selection {
+    background-color: #e07d2f;
+    color: #ece4d0;
+  }
+</style>

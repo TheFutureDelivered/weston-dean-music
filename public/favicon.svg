@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#ece4d0"/>
+  <text x="32" y="40" font-family="Caprasimo, 'Cooper Black', Georgia, serif" font-size="38" font-weight="700" text-anchor="middle" fill="#1c1a17">w</text>
+  <rect x="10" y="48" width="44" height="3" fill="#e9b941"/>
+  <rect x="10" y="51" width="44" height="3" fill="#e07d2f"/>
+  <rect x="10" y="54" width="44" height="3" fill="#d4523c"/>
+</svg>
