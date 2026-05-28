@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const stageFinderProfile = 'https://thestagefinder.com/performer/60bd4dd1-f7fa-47a4-a7a3-48328b9de432';
+// Both point to the artist promo page on The Stage Finder.
+// stageFinderProfile is kept as a name for non-CTA links (footer, in-text).
 const bookingUrl = 'https://thestagefinder.com/book/weston-dean';
+const stageFinderProfile = bookingUrl;
 const bookingEmail = 'booking@westondeanmusic.com';
 const phone = '973.570.3211';
 const phoneHref = 'tel:+19735703211';
@@ -285,8 +287,8 @@ const year = new Date().getFullYear();
                   </div>
                   <div class="flex flex-col items-center justify-between text-center px-6 py-8 h-[calc(100%-1rem)]">
                     <div>
-                      <p class="font-display text-5xl md:text-6xl text-ink leading-none">{s.year.slice(-2)}</p>
-                      <p class="font-display text-xl md:text-2xl text-sunset-red uppercase tracking-widest mt-1">{s.monthShort}</p>
+                      <p class="font-display text-4xl md:text-5xl text-ink uppercase tracking-wide leading-none">{s.monthShort}</p>
+                      <p class="text-base md:text-lg text-sunset-red font-semibold tracking-[0.2em] mt-2">{s.year}</p>
                     </div>
                     <div>
                       <p class="font-display text-xl md:text-2xl text-ink leading-tight">{s.venue}</p>
@@ -335,8 +337,8 @@ const year = new Date().getFullYear();
                 <!-- date + venue text -->
                 <div class="flex-1 flex flex-col items-center justify-between text-center px-4 py-4">
                   <div>
-                    <p class="font-display text-4xl md:text-5xl text-ink leading-none">{s.year.slice(-2)}</p>
-                    <p class="font-display text-base md:text-lg text-sunset-red uppercase tracking-widest mt-1">{s.monthShort}</p>
+                    <p class="font-display text-3xl md:text-4xl text-ink uppercase tracking-wide leading-none">{s.monthShort}</p>
+                    <p class="text-sm md:text-base text-sunset-red font-semibold tracking-[0.2em] mt-2">{s.year}</p>
                   </div>
                   <div class="mt-2">
                     <p class="font-display text-base md:text-lg text-ink leading-tight">{s.venue}</p>
@@ -432,15 +434,7 @@ const year = new Date().getFullYear();
           rel="noopener"
           class="font-semibold bg-ink text-sand px-6 py-3 rounded-sm hover:bg-sunset-orange transition-colors"
         >
-          See available dates
-        </a>
-        <a
-          href={stageFinderProfile}
-          target="_blank"
-          rel="noopener"
-          class="font-semibold text-ink border-2 border-ink px-6 py-3 rounded-sm hover:bg-ink hover:text-sand transition-colors"
-        >
-          Full press kit
+          See available dates on The Stage Finder
         </a>
       </div>
 
@@ -450,7 +444,7 @@ const year = new Date().getFullYear();
           class="block p-6 bg-sandLight border-2 border-ink rounded-sm hover:bg-sunset-yellow transition-colors group"
         >
           <p class="text-xs tracking-widest uppercase text-sunset-red mb-2 font-semibold">Email</p>
-          <p class="font-display text-xl text-ink break-all">
+          <p class="font-sans font-semibold text-base text-ink">
             {bookingEmail}
           </p>
         </a>
@@ -503,7 +497,10 @@ const year = new Date().getFullYear();
       </div>
 
       <p class="text-xs text-sand/50">
-        © {year} Weston Dean Music
+        © {year} Weston Dean Music · Powered by{' '}
+        <a href="https://thefuturedelivered.com" target="_blank" rel="noopener" class="text-sunset-orange hover:text-sunset-yellow transition-colors">
+          The Future Delivered
+        </a>
       </p>
     </div>
   </footer>
